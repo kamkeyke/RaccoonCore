@@ -1,4 +1,4 @@
 jdk:
   - openjdk17
 install:
-  - ./gradlew publishMavenJavaPublicationToMavenRepository -Pgroup=com.github.${@user}
+  - ./gradlew build
