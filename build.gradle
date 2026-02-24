@@ -18,6 +18,7 @@ base {
 java {
     toolchain.languageVersion = JavaLanguageVersion.of(17)
     withSourcesJar()
+    withJavadocJar()
 }
 
 println "Java: ${System.getProperty 'java.version'}, JVM: ${System.getProperty 'java.vm.version'} (${System.getProperty 'java.vendor'}), Arch: ${System.getProperty 'os.arch'}"
@@ -201,15 +202,19 @@ tasks.named('jar', Jar).configure {
 //     dependsOn 'reobfJar'
 // }
 
-tasks.build {
-    dependsOn 'reobfJar'
+tasks.named("publish").configure {
+    dependsOn("reobfJar")
+}
+tasks.withType(Javadoc) {
+    options.addStringOption('Xdoclint:all,-missing', '-quiet')
 }
 
 // Example configuration to allow publishing using the maven-publish plugin
 publishing {
     publications {
         register('mavenJava', MavenPublication) {
-            artifact jar
+            from components.java
+            artifactId = base.archivesName.get()
         }
     }
     repositories {

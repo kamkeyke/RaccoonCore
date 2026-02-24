@@ -30,7 +30,7 @@ public class RaccoonNetworking {
         channel.messageBuilder(packetClass, id(), direction)
                 .encoder(encoder)
                 .decoder(decoder)
-                .consumerNetworkThread(handler)
+                .consumerMainThread(handler)
                 .add();
     }
 

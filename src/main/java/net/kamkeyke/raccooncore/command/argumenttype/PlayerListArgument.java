@@ -14,6 +14,15 @@ import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
+/**
+ * Custom argument type for commands that allows the selection of multiple player names in a
+ * formatted list enclosed in curly braces. Makes it easier to pass multiple players as arguments.
+ * <p>Expected format: {@code {player1,player2,player3...}}
+ * <p>This class handles the parsing of the input string and provides real-time
+ * tab-completion suggestions, filtering online player names after each comma
+ * or at the start of the list.
+ * @see ArgumentType
+ */
 public class PlayerListArgument implements ArgumentType<List<String>> {
     public static PlayerListArgument players(){
         return new PlayerListArgument();
