@@ -130,9 +130,9 @@ repositories {
     maven {
         url = "https://cursemaven.com"
     }
-    maven { // Autenticar a conta do minecraft no ambiente Dev
-        url = "https://pkgs.dev.azure.com/djtheredstoner/DevAuth/_packaging/public/maven/v1"
-    }
+    // maven { // Autenticar a conta do minecraft no ambiente Dev
+    //     url = "https://pkgs.dev.azure.com/djtheredstoner/DevAuth/_packaging/public/maven/v1"
+    // }
 }
 
 dependencies {
@@ -151,7 +151,7 @@ dependencies {
     implementation "org.spongepowered:mixin:0.8.5"
 
     // DevAuth
-    runtimeOnly fg.deobf("me.djtheredstoner:DevAuth-forge-latest:1.2.1")
+    // compileOnly fg.deobf("me.djtheredstoner:DevAuth-forge-latest:1.2.1")
 }
 
 // This block of code expands all declared replace properties in the specified resource targets.
@@ -202,10 +202,9 @@ tasks.named('jar', Jar).configure {
 //     dependsOn 'reobfJar'
 // }
 
-tasks.named("publish").configure {
-    dependsOn("reobfJar")
-}
-tasks.withType(Javadoc) {
+tasks.withType(PublishToMavenLocal).configureEach { dependsOn 'reobfJar' }
+tasks.withType(PublishToMavenRepository).configureEach { dependsOn 'reobfJar' }
+tasks.withType(Javadoc).configureEach {
     options.addStringOption('Xdoclint:all,-missing', '-quiet')
 }
 
@@ -213,8 +212,10 @@ tasks.withType(Javadoc) {
 publishing {
     publications {
         register('mavenJava', MavenPublication) {
-            from components.java
             artifactId = base.archivesName.get()
+            artifact jar
+            artifact sourcesJar
+            artifact javadocJar
         }
     }
     repositories {

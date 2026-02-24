@@ -1,5 +1,7 @@
 # 🦝 RaccoonCore
 
+[![](https://jitpack.io/v/kamkeyke/RaccoonCore.svg)](https://jitpack.io/#kamkeyke/RaccoonCore)
+
 **RaccoonCore** is a base library I created to unify and optimize the infrastructure of my Minecraft (Forge) mods. The main goal is to eliminate boilerplate code and combine code that can be useful in various contexts and different mods.
 
 ## ✨ Features
