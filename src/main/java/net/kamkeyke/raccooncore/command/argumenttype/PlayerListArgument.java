@@ -8,6 +8,7 @@ import com.mojang.brigadier.suggestion.Suggestions;
 import com.mojang.brigadier.suggestion.SuggestionsBuilder;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.SharedSuggestionProvider;
+import net.minecraft.server.level.ServerPlayer;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -17,10 +18,13 @@ import java.util.concurrent.CompletableFuture;
 /**
  * Custom argument type for commands that allows the selection of multiple player names in a
  * formatted list enclosed in curly braces. Makes it easier to pass multiple players as arguments.
+ *
  * <p>Expected format: {@code {player1,player2,player3...}}
+ *
  * <p>This class handles the parsing of the input string and provides real-time
  * tab-completion suggestions, filtering online player names after each comma
  * or at the start of the list.
+ *
  * @see ArgumentType
  */
 public class PlayerListArgument implements ArgumentType<List<String>> {
@@ -28,8 +32,48 @@ public class PlayerListArgument implements ArgumentType<List<String>> {
         return new PlayerListArgument();
     }
 
+    /**
+     * Retrieves the parsed player argument and resolves it into a collection of
+     * {@link ServerPlayer} instances.
+     *
+     * <p>This is the preferred method to use when handling this argument in
+     * command execution, as it already converts the parsed player names into
+     * actual online {@link ServerPlayer} objects.
+     *
+     * <p>Only currently online players will be returned. Any names that cannot
+     * be resolved to an online player will be ignored.
+     *
+     * @param context the command context
+     * @param name the name of the argument
+     * @return a collection of resolved {@link ServerPlayer} objects
+     */
+    public static Collection<ServerPlayer> getPlayerList(CommandContext<CommandSourceStack> context, String name){
+        List<String> names = getPlayerNames(context, name);
+        Collection<ServerPlayer> players = new ArrayList<>();
+
+        for (String n : names) {
+            ServerPlayer p = context.getSource().getServer().getPlayerList().getPlayerByName(n);
+            if (p != null) players.add(p);
+        }
+
+        return players;
+    }
+
+    /**
+     * Retrieves the raw list of player names parsed by this argument.
+     *
+     * <p>This method returns the names exactly as typed in the command input,
+     * without resolving them into {@link ServerPlayer} instances.
+     *
+     * <p>In most cases, you should prefer using {@link #getPlayerList(CommandContext, String)}
+     * instead, unless you explicitly need the raw string values.
+     *
+     * @param context the command context
+     * @param name the name of the argument
+     * @return a list of player names as strings
+     */
     @SuppressWarnings("unchecked")
-    public static List<String> getPlayerList(CommandContext<CommandSourceStack> context, String name){
+    public static List<String> getPlayerNames(CommandContext<CommandSourceStack> context, String name){
         return (List<String>) context.getArgument(name, List.class);
     }
 
