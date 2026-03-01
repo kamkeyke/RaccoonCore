@@ -5,7 +5,8 @@ import java.util.regex.Pattern;
 
 /**
  * Small utility class for time-related calculations and formatting within the Minecraft environment.
- * <p>This class provides methods to convert game ticks into human-readable strings.
+ * <p>
+ * This class provides methods to convert game ticks into human-readable strings.
  */
 public class TimeUtils {
     private static final Pattern DURATION_PATTERN = Pattern.compile("(\\d+)\\s*([dhms])");
@@ -14,9 +15,9 @@ public class TimeUtils {
      * Formats a duration given in game ticks into a human-readable string.
      * <p>The format scales dynamically:
      * <ul>
-     * <li>Values over 24h include days (e.g., "1d 2h 30m")</li>
-     * <li>Values over 1h omit seconds for brevity (e.g., "1h 15m")</li>
-     * <li>Small values show minutes and seconds (e.g., "2m 30s")</li>
+     *      <li>Values over 24h include days (e.g., "1d 2h 30m")</li>
+     *      <li>Values over 1h omit seconds for brevity (e.g., "1h 15m")</li>
+     *      <li>Small values show minutes and seconds (e.g., "2m 30s")</li>
      * </ul>
      * @param ticks The amount of game ticks to format.
      * @return A formatted string (e.g., "1h 30m", "45s", "∞" if negative).
@@ -47,7 +48,8 @@ public class TimeUtils {
 
     /**
      * Parses a human-readable duration string into game ticks.
-     * <p>The parser identifies units regardless of spacing or order:
+     * <p>
+     * The parser identifies units regardless of spacing or order:
      * <ul>
      * <li>Supports days (d), hours (h), minutes (m), and seconds (s)</li>
      * <li>Examples: "1d 12h", "30m 10s", "1h30m"</li>

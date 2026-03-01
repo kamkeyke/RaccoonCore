@@ -62,4 +62,9 @@ public class RaccoonNetworking {
                 )
         ), message);
     }
+    public <MSG> void sendToPlayers(MSG message, Iterable<? extends ServerPlayer> players){
+        for (ServerPlayer player : players){
+            sendToClient(message, player);
+        }
+    }
 }
