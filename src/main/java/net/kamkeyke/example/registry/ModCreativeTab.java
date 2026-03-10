@@ -9,6 +9,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
+import org.jetbrains.annotations.ApiStatus;
 
 import java.util.Collection;
 import java.util.Set;
@@ -18,6 +19,7 @@ import java.util.Set;
  * <p>
  * It serves only as an example.
  */
+@ApiStatus.Internal
 public class ModCreativeTab {
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TAB =
             DeferredRegister.create(Registries.CREATIVE_MODE_TAB, RaccoonCore.MODID);

@@ -9,12 +9,14 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
+import org.jetbrains.annotations.ApiStatus;
 
 /**
  * This class was not registered in ModEventBus and therefore will not appear in-game.
  * <p>
  * It serves only as an example.
  */
+@ApiStatus.Internal
 public class ModItems {
     public static final DeferredRegister<Item> ITEMS =
             DeferredRegister.create(ForgeRegistries.ITEMS, RaccoonCore.MODID);

@@ -5,12 +5,14 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.common.capabilities.CapabilityToken;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
+import org.jetbrains.annotations.ApiStatus;
 
 /**
  * This class was not registered in ModEventBus and therefore will not appear in-game.
  * <p>
  * It serves only as an example.
  */
+@ApiStatus.Internal
 public class PlayerCapabilityProvider extends RaccoonCapabilityProvider {
     public static final Capability<CapData> CAP_DATA = CapabilityManager.get(new CapabilityToken<>() {});
 

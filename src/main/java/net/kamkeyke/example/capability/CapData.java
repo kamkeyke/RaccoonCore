@@ -2,7 +2,9 @@ package net.kamkeyke.example.capability;
 
 import net.kamkeyke.raccooncore.api.IPlayerCapability;
 import net.minecraft.nbt.CompoundTag;
+import org.jetbrains.annotations.ApiStatus;
 
+@ApiStatus.Internal
 public class CapData implements IPlayerCapability<CapData> {
     private boolean value = false;
 
