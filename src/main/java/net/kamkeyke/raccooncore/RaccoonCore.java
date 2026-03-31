@@ -1,7 +1,7 @@
 package net.kamkeyke.raccooncore;
 
 import com.mojang.logging.LogUtils;
-import net.kamkeyke.raccooncore.registry.ArgumentTypes;
+import net.kamkeyke.raccooncore.registry.ModArgumentTypes;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
@@ -34,7 +34,7 @@ public class RaccoonCore
     {
         IEventBus modEventBus = context.getModEventBus();
 
-        ArgumentTypes.register(modEventBus);
+        ModArgumentTypes.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);
         MinecraftForge.EVENT_BUS.register(this);

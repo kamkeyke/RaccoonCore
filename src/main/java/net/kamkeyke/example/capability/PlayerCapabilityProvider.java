@@ -8,7 +8,7 @@ import net.minecraftforge.event.AttachCapabilitiesEvent;
 import org.jetbrains.annotations.ApiStatus;
 
 /**
- * This class was not registered in ModEventBus and therefore will not appear in-game.
+ * This class was not registered in the ModEventBus and therefore will not appear in-game.
  * <p>
  * It serves only as an example.
  */

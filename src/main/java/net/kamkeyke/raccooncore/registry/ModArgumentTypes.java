@@ -10,7 +10,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
-public class ArgumentTypes {
+public class ModArgumentTypes {
     public static final DeferredRegister<ArgumentTypeInfo<?, ?>> ARGUMENT_TYPES =
             DeferredRegister.create(ForgeRegistries.COMMAND_ARGUMENT_TYPES, RaccoonCore.MODID);
 
