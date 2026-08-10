@@ -11,7 +11,7 @@ version = mod_version
 group = mod_group_id
 
 base {
-    archivesName = "$mod_id-$minecraft_version"
+    archivesName = "$mod_id-$minecraft_version-$loader"
 }
 
 // Mojang ships Java 17 to end users in 1.18+, so your mod should target Java 17.
@@ -196,11 +196,6 @@ tasks.named('jar', Jar).configure {
     // This is the preferred method to reobfuscate your jar file
     finalizedBy 'reobfJar'
 }
-
-// However if you are in a multi-project build, dev time needs unobfed jar files, so you can delay the obfuscation until publishing by doing:
-// tasks.named('publish').configure {
-//     dependsOn 'reobfJar'
-// }
 
 tasks.withType(PublishToMavenLocal).configureEach { dependsOn 'reobfJar' }
 tasks.withType(PublishToMavenRepository).configureEach { dependsOn 'reobfJar' }

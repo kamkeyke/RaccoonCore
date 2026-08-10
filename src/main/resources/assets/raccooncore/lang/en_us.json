@@ -1,3 +1,10 @@
 {
-  "misc.raccooncore.buildViewersList.and": " and "
+  "chat.raccooncore.copy.uuid.click": "Click to Copy the Entity's UUID to Clipboard",
+  "chat.raccooncore.copy.nickname.click": "Click to Copy the Player's Nickname",
+
+  "misc.raccooncore.buildViewersList.and": " and ",
+
+  "command.raccooncore.profile_cache_unavailable": "Profile cache is unavailable on this server",
+  "command.raccooncore.nick.notfound": "UUID not found in cache",
+  "command.raccooncore.uuid.notfound": "Player '%s' not found"
 }

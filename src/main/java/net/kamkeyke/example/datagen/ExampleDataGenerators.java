@@ -10,14 +10,16 @@ import org.jetbrains.annotations.ApiStatus;
  * It serves only as an example.
  */
 @ApiStatus.Internal
-public class DataGenerators {
+public class ExampleDataGenerators {
     public static void gatherData(GatherDataEvent event){
         RaccoonData data = new RaccoonData(event);
 
         // Manual sound provider:
-        data.client(new ManualModSoundProvider(data.output()));
+        data.client(new ExampleManualModSoundProvider(data.output()));
         // Auto sound provider:
-        data.client(new AutoModSoundProvider(data.output()));
-        // Use ONLY ONE!!
+        data.client(new ExampleAutoModSoundProvider(data.output()));
+        // Choose only ONE sound provider.
+        // Both generate assets/<modid>/sounds.json, so registering both
+        // will cause one to overwrite the other.
     }
 }

@@ -2,11 +2,15 @@ package net.kamkeyke.raccooncore;
 
 import com.mojang.logging.LogUtils;
 import net.kamkeyke.raccooncore.registry.ModArgumentTypes;
-import net.minecraftforge.common.MinecraftForge;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.Block;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.registries.ForgeRegistries;
+import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
 
 /**
@@ -37,21 +41,20 @@ public class RaccoonCore
         ModArgumentTypes.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);
-        MinecraftForge.EVENT_BUS.register(this);
     }
 
-    /**
-     * Greetings to confirm the library
-     * is correctly loaded in the environment.
-     */
-    private void commonSetup(final FMLCommonSetupEvent event)
-    {
-        if (System.getProperty("raccoon.greeted") == null) {
-            LOGGER.info("-------------------------------");
-            LOGGER.info("  Greetings from the raccoon!  ");
-            LOGGER.info("-------------------------------");
-            System.setProperty("raccoon.greeted", "true");
-        }
+    private void commonSetup(final FMLCommonSetupEvent event) {
+        LOGGER.info("-------------------------------");
+        LOGGER.info("  Greetings from the raccoon!  ");
+        LOGGER.info("-------------------------------");
     }
 
+    // ----------   ----------
+    public static @Nullable Item simulateItem(String modId, String item){
+        return ForgeRegistries.ITEMS.getValue(ResourceLocation.fromNamespaceAndPath(modId, item));
+    }
+
+    public static @Nullable Block simulateBlock(String modId, String item){
+        return ForgeRegistries.BLOCKS.getValue(ResourceLocation.fromNamespaceAndPath(modId, item));
+    }
 }

@@ -54,6 +54,7 @@ public class RaccoonRegistryUtil {
          * @param block The {@link RegistryObject} of the parent block.
          * @return The {@link RegistryObject} of the registered Item.
          */
+        @SuppressWarnings("UnusedReturnValue")
         public static <T extends Block> RegistryObject<Item> registerBlockItem(String name, RegistryObject<T> block, DeferredRegister<Item> items){
             return items.register(name, () -> new BlockItem(block.get(), new Item.Properties()));
         }
@@ -66,6 +67,7 @@ public class RaccoonRegistryUtil {
          * @param burnTime  The fuel duration in ticks (e.g., 200 ticks = 1 item smelted).
          * @return The {@link RegistryObject} of the registered Item.
          */
+        @SuppressWarnings("UnusedReturnValue")
         public static <T extends Block> RegistryObject<Item> registerBlockItem(String name, RegistryObject<T> block, int burnTime, DeferredRegister<Item> items){
             return items.register(name, () -> new BlockItem(block.get(), new Item.Properties()){
                 @Override

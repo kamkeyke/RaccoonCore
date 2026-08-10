@@ -13,8 +13,8 @@ import org.jetbrains.annotations.ApiStatus;
  * It serves only as an example.
  */
 @ApiStatus.Internal
-public class PlayerCapabilityProvider extends RaccoonCapabilityProvider {
-    public static final Capability<CapData> CAP_DATA = CapabilityManager.get(new CapabilityToken<>() {});
+public class ExamplePlayerCapabilityProvider extends RaccoonCapabilityProvider {
+    public static final Capability<ExampleCapData> EXAMPLE_CAP_DATA = CapabilityManager.get(new CapabilityToken<>() {});
 
     /**
      * Call me inside the {@link AttachCapabilitiesEvent}
@@ -23,7 +23,7 @@ public class PlayerCapabilityProvider extends RaccoonCapabilityProvider {
      *     event.addCapability(ResourceLocation.fromNamespaceAndPath(MODID, "modid_capabilities"), new PlayerCapabilityProvider());
      * }</pre>
      */
-    public PlayerCapabilityProvider(){
-        register("capdata", CAP_DATA, CapData::new);
+    public ExamplePlayerCapabilityProvider(){
+        register("example_cap_data", EXAMPLE_CAP_DATA, ExampleCapData::new);
     }
 }

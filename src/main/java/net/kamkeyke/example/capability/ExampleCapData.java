@@ -5,7 +5,7 @@ import net.minecraft.nbt.CompoundTag;
 import org.jetbrains.annotations.ApiStatus;
 
 @ApiStatus.Internal
-public class CapData implements IPlayerCapability<CapData> {
+public class ExampleCapData implements IPlayerCapability<ExampleCapData> {
     private boolean value = false;
 
     public boolean getValue() {
@@ -16,7 +16,7 @@ public class CapData implements IPlayerCapability<CapData> {
     }
 
     @Override
-    public void copyFrom(CapData source) {
+    public void copyFrom(ExampleCapData source) {
         this.value = source.value;
     }
 

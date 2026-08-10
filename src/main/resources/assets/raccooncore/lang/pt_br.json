@@ -1,3 +1,10 @@
 {
-  "misc.raccooncore.buildViewersList.and": " e "
+  "chat.raccooncore.copy.uuid.click": "Clique para copiar o UUID da entidade para a área de transferência",
+  "chat.raccooncore.copy.nickname.click": "Click para copiar o nickname do jogador",
+
+  "misc.raccooncore.buildViewersList.and": " e ",
+
+  "command.raccooncore.profile_cache_unavailable": "Cache de perfis indisponível neste servidor",
+  "command.raccooncore.nick.notfound": "UUID não encontrado no cache",
+  "command.raccooncore.uuid.notfound": "Jogador '%s' não encontrado"
 }

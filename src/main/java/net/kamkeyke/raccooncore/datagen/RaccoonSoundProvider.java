@@ -2,8 +2,9 @@ package net.kamkeyke.raccooncore.datagen;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import net.kamkeyke.example.datagen.AutoModSoundProvider;
-import net.kamkeyke.example.datagen.ManualModSoundProvider;
+import net.kamkeyke.example.datagen.ExampleAutoModSoundProvider;
+import net.kamkeyke.example.datagen.ExampleManualModSoundProvider;
+import net.kamkeyke.raccooncore.data.SoundEntry;
 import net.minecraft.data.CachedOutput;
 import net.minecraft.data.DataProvider;
 import net.minecraft.data.PackOutput;
@@ -14,7 +15,21 @@ import java.util.concurrent.CompletableFuture;
 
 /**
  * Base data provider for generating {@code sounds.json}.
- * To see an example of usage head to {@link ManualModSoundProvider} or {@link AutoModSoundProvider}.
+ * <p>
+ * There are two ways to generate sound definitions:
+ * <ul>
+ *     <li>Extend this class to manually register every sound.</li>
+ *     <li>Extend {@link AutoSoundProvider} to automatically generate everything
+ *     from a list of {@link SoundEntry}.</li>
+ * </ul>
+ * <p>
+ * <b>Use only one approach.</b>
+ * Both providers generate the same {@code assets/<modid>/sounds.json} file,
+ * so registering both at the same time will cause one provider to overwrite
+ * the other.
+ * <p>
+ * To see examples, head to {@link ExampleManualModSoundProvider} or
+ * {@link ExampleAutoModSoundProvider}.
  * <p>
  * This class simplifies sound registration by providing helper methods
  * for common use cases such as single sounds, variations, and custom lists.
@@ -31,20 +46,22 @@ import java.util.concurrent.CompletableFuture;
  * <p>
  * Variation rule:
  * <ul>
- *     <li>Use the pattern {@code name_#} starting at 1</li>
- *     <li>Example: {@code sound_1.ogg, sound_2.ogg, sound_3.ogg}</li>
+ *     <li>Use the pattern {@code name_#} starting at 1.</li>
+ *     <li>Example: {@code sound_1.ogg}, {@code sound_2.ogg}, {@code sound_3.ogg}.</li>
  * </ul>
  * <p>
  * Usage:
  * <pre>{@code
  * @Override
  * protected void registerSounds(JsonObject root) {
- *     sound(root, "vine_boom", "misc/vine_boom");
- *     variations(root, "fire_cracking", "sfx/fire_crackings/fire_cracking.ogg", 5);
+ *     singleSound(root, "vine_boom", "misc/vine_boom");
+ *     variedSound(root, "fire_crackling", "sfx/fire_cracklings/fire_crackling", 5);
  * }
  * }</pre>
  * <p>
  * This provider only generates the JSON file.
+ * All referenced sound files must still exist under
+ * {@code assets/<modid>/sounds/}.
  * Missing sound files will result in silent or broken sounds in-game.
  */
 public abstract class RaccoonSoundProvider implements DataProvider {

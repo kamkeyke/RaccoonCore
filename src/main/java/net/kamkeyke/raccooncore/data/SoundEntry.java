@@ -1,7 +1,6 @@
 package net.kamkeyke.raccooncore.data;
 
 public record SoundEntry(String soundName, String basePathAndName, int variations, String[] customPathsAndNames) {
-
     public static SoundEntry single(String soundName, String basePathAndName){
         return varied(soundName, basePathAndName, 0);
     }

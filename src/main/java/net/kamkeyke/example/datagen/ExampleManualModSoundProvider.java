@@ -7,15 +7,21 @@ import net.minecraft.data.PackOutput;
 import org.jetbrains.annotations.ApiStatus;
 
 /**
- * See also: {@link AutoModSoundProvider}
+ * Example implementation of {@link RaccoonSoundProvider}.
+ * <p>
+ * Demonstrates manual sound registration using
+ * {@code singleSound()}, {@code variedSound()} and
+ * {@code customPaths()}.
+ * <p>
+ * See also: {@link ExampleAutoModSoundProvider}
  * <hr>
  * This class was not registered in the ModEventBus and therefore will not appear in-game.
  * <p>
  * It serves only as an example.
  */
 @ApiStatus.Internal
-public class ManualModSoundProvider extends RaccoonSoundProvider {
-    public ManualModSoundProvider(PackOutput output) {
+public class ExampleManualModSoundProvider extends RaccoonSoundProvider {
+    public ExampleManualModSoundProvider(PackOutput output) {
         super(output, RaccoonCoreMod.MODID);
     }
 

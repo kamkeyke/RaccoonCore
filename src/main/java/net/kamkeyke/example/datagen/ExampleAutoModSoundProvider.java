@@ -5,23 +5,30 @@ import net.kamkeyke.example.registry.ModSounds;
 import net.kamkeyke.raccooncore.data.SoundEntry;
 import net.kamkeyke.raccooncore.datagen.AutoSoundProvider;
 import net.minecraft.data.PackOutput;
+import org.jetbrains.annotations.ApiStatus;
 
 import java.util.List;
 
 /**
- * See also: {@link ManualModSoundProvider}
+ * Example implementation of {@link AutoSoundProvider}.
+ * <p>
+ * Demonstrates automatic sound registration by returning a list of
+ * {@link SoundEntry} instances.
+ * <p>
+ * See also: {@link ExampleManualModSoundProvider}
  * <hr>
  * This class was not registered in the ModEventBus and therefore will not appear in-game.
  * <p>
  * It serves only as an example.
  */
-public class AutoModSoundProvider extends AutoSoundProvider {
-    protected AutoModSoundProvider(PackOutput output) {
+@ApiStatus.Internal
+public class ExampleAutoModSoundProvider extends AutoSoundProvider {
+    protected ExampleAutoModSoundProvider(PackOutput output) {
         super(output, RaccoonCoreMod.MODID);
     }
 
     @Override
     protected List<SoundEntry> getEntries() {
-        return ModSounds.entries;
+        return ModSounds.SOUND_ENTRIES;
     }
 }

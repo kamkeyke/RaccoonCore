@@ -1,6 +1,6 @@
 package net.kamkeyke.raccooncore.datagen;
 
-import net.kamkeyke.example.datagen.DataGenerators;
+import net.kamkeyke.example.datagen.ExampleDataGenerators;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.DataProvider;
@@ -11,7 +11,7 @@ import net.minecraftforge.data.event.GatherDataEvent;
 import java.util.concurrent.CompletableFuture;
 
 /**
- * To see an example of usage head to {@link DataGenerators}.
+ * To see an example of usage head to {@link ExampleDataGenerators}.
  */
 public class RaccoonData {
     private final GatherDataEvent event;
@@ -45,6 +45,7 @@ public class RaccoonData {
         return provider;
     }
 
+    @SuppressWarnings("UnusedReturnValue")
     public <T extends DataProvider> T client(T provider) {
         generator.addProvider(event.includeClient(), provider);
         return provider;
